@@ -3,3 +3,6 @@
   become: yes
   become_user: root
 
+tasks:
+  - name: Firewall
+    include_tasks: "./tasks/firewalld.yml"
