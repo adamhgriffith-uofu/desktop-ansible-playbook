@@ -63,7 +63,7 @@ Vagrant.configure("2") do |config|
       pellentesque_lobortis: secrets["pellentesque_lobortis"]
     }
     ansible.host_key_checking = false
-    ansible.playbook = "./test.yml"
+    ansible.playbook = "./playbook.yml"
     ansible.verbose = ENV['VERBOSITY']
   end
 
