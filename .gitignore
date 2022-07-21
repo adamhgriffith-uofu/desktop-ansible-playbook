@@ -4,3 +4,6 @@ secrets.yml
 
 # Vagrant
 .vagrant
+
+# Other
+*.[Ll]og
