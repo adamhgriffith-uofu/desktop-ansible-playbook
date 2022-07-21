@@ -30,6 +30,9 @@ Vagrant.configure("2") do |config|
     abort
   end
 
+  # Necessary for mounts to work (box comes with out-of-date kernel)
+  config.vbguest.installer_options = { allow_kernel_upgrade: true }
+
   # Specify the Vagrant Box, version, and update check:
   config.vm.box = "rockylinux/8"
   config.vm.box_version = "5.0.0"
