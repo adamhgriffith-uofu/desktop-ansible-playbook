@@ -1,0 +1,15 @@
+---
+- name: Install extra repos via system package manager
+  package:
+    name:
+      - epel-release
+    state: present
+
+- name: Install general packages/dependencies via system package manager
+  package:
+    name:
+      - firefox
+      - firewalld
+      - git
+      - which
+    state: present

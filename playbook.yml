@@ -4,5 +4,8 @@
   become_user: root
 
 tasks:
+  - name: OS Packages
+    include_tasks: "./tasks/os-packages.yml"
+
   - name: Firewall
     include_tasks: "./tasks/firewalld.yml"
