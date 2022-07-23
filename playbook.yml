@@ -3,9 +3,15 @@
   become: yes
   become_user: root
 
-tasks:
-  - name: OS Packages
-    include_tasks: "./tasks/os-packages.yml"
+  tasks:
+    - name: OS Packages
+      include_tasks: "./tasks/os-packages.yml"
 
-  - name: Firewall
-    include_tasks: "./tasks/firewalld.yml"
+    - name: Firewall
+      include_tasks: "./tasks/firewalld.yml"
+
+    - name: SELinux
+      include_tasks: "./tasks/selinux.yml"
+
+    - name: Helm3
+      include_tasks: "./tasks/helm3.yml"
