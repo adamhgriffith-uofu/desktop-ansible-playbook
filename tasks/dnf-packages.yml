@@ -1,0 +1,55 @@
+---
+- name: Extra Packages for Enterprise Linux (EPEL)
+  package:
+    name:
+      - epel-release
+    state: present
+
+- name: Add other package repo files
+  template:
+    src: "templates/yum.repos.d/{{ item }}.j2"
+    dest: "/etc/yum.repos.d/{{ item }}"
+    owner: root
+    group: root
+    mode: '0644'
+  with_items:
+    - 1password.repo
+    - google-chrome.repo
+    - google-cloud-sdk.repo
+    - hashicorp.repo
+    - kubernetes.repo
+    - slack.repo
+    - virtualbox.repo
+    - vscode.repo
+
+- name: Import rpm keys
+  rpm_key:
+    state: present
+    key: "{{ item }}"
+  with_items:
+    - "{{ onepassword_rpm_key }}"
+    - "{{ googlechrome_rpm_key }}"
+    - "{{ googlecloudsdk_rpm_key }}"
+    - "{{ googlecloudsdk_yum_key }}"
+    - "{{ hashicorp_rpm_key }}"
+    - "{{ kubernetes_rpm_key }}"
+    - "{{ kubernetes_yum_key }}"
+    - "{{ slack_rpm_key }}"
+    - "{{ virtualbox_rpm_key }}"
+    - "{{ vscode_rpm_key }}"
+
+- name: Install packages via system package manager
+  package:
+    name:
+      - 1password
+      - code
+      - firefox
+      - firewalld
+      - git
+      - google-chrome-stable
+      - kubectl-{{ kubectl_version }}
+      - slack
+      - terraform
+      - which
+      - VirtualBox-{{ virtualbox_version }}
+    state: present

@@ -1,6 +1,34 @@
 
+#- Google Chrome installation options:
+googlechrome_rpm_key: https://dl.google.com/linux/linux_signing_key.pub
+
+#- Google Cloud SDK installation options:
+googlecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+googlecloudsdk_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
+
+#- Hashicorp installation options:
+hashicorp_rpm_key: https://rpm.releases.hashicorp.com/gpg
+
 #- Helm3 installation options:
 helm_archive_filename: 'helm-v{{ helm_version }}-linux-amd64.tar.gz'
 helm_install_dir: '/usr/local/share/helm'
 helm_mirror: 'https://get.helm.sh'
 helm_version: 3.8.1
+
+#- Kubernetes-related installation options:
+kubernetes_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+kubernetes_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
+kubectl_version: 1.24.3
+
+#- 1Password installation options:
+onepassword_rpm_key: https://downloads.1password.com/linux/keys/1password.asc
+
+#- Slack installation options:
+slack_rpm_key: https://packagecloud.io/gpg.key
+
+#- VirtualBox installation options:
+virtualbox_rpm_key: https://www.virtualbox.org/download/oracle_vbox.asc
+virtualbox_version: 6.1
+
+#- VSCode installation options:
+vscode_rpm_key: https://packages.microsoft.com/keys/microsoft.asc
