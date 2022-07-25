@@ -30,6 +30,12 @@ Vagrant.configure("2") do |config|
     abort
   end
 
+  # Check for vagrant-disksize plugin
+  if !Vagrant.has_plugin?('vagrant-disksize')
+    puts 'ERROR: vagrant-disksize plugin required. To install run `vagrant plugin install vagrant-disksize`'
+    abort
+  end
+
   # Necessary for mounts to work (box comes with out-of-date kernel)
   config.vbguest.installer_options = { allow_kernel_upgrade: true }
 
@@ -37,6 +43,9 @@ Vagrant.configure("2") do |config|
   config.vm.box = "rockylinux/8"
   config.vm.box_version = "5.0.0"
   config.vm.box_check_update = "false"
+
+  # Customize the disksize:
+  config.disksize.size = '10GB'
 
   # Customize the hostname:
   config.vm.hostname = ENV['HOSTNAME']
@@ -58,6 +67,13 @@ Vagrant.configure("2") do |config|
     # Customize the name that appears in the VirtualBox GUI:
     vb.name = ENV['HOSTNAME']
   end
+
+  # Run a script on provisioning the box to format the file system
+  config.vm.provision "shell", inline: <<-SHELL
+        dnf install -y cloud-utils-growpart
+        growpart /dev/sda 1
+        xfs_growfs /dev/sda1
+      SHELL
 
   # Run Ansible from the Vagrant host:
   config.vm.provision "ansible", run:"always" do |ansible|
