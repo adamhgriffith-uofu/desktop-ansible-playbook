@@ -55,13 +55,16 @@
   dnf:
     name:
       - 1password
+      - dnf-plugins-core
       - code
       - cuda
       - firefox
       - firewalld
-      - gcc
       - git
       - google-chrome-stable
+      - google-cloud-sdk
+      - google-cloud-sdk-gke-gcloud-auth-plugin
+      - google-cloud-sdk-minikube
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
       - kubectl-{{ kubectl_version }}
@@ -70,5 +73,6 @@
       - slack
       - terraform
       - which
+      - vagrant
       - VirtualBox-{{ virtualbox_version }}
     state: present
