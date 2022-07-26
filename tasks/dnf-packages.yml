@@ -48,6 +48,8 @@
       - git
       - google-chrome-stable
       - kubectl-{{ kubectl_version }}
+      - podman
+      - podman-compose
       - slack
       - terraform
       - which
