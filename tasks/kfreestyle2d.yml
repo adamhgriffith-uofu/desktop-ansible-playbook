@@ -15,6 +15,12 @@
     update: yes
   when: not kfreestyle2d_install_path.stat.exists
 
+- name: Delete the kfreestyle2d repository
+  file:
+    path: "{{ kfreestyle2d_git_dest }}"
+    state: absent
+  when: kfreestyle2d_install_path.stat.exists
+
 - name: Build the default target
   make:
     chdir: "{{ kfreestyle2d_git_dest }}"

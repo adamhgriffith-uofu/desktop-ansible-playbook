@@ -15,6 +15,12 @@ helm_install_dir: '/usr/local/share/helm'
 helm_mirror: 'https://get.helm.sh'
 helm_version: 3.8.1
 
+#- JetBrains Toolbox installation options:
+jetbrainstoolbox_archive_filename: 'jetbrains-toolbox-{{ jetbrainstoolbox_version }}.tar.gz'
+jetbrainstoolbox_install_dir: '/usr/local/share/jetbrains'
+jetbrainstoolbox_mirror: 'https://download.jetbrains.com/toolbox'
+jetbrainstoolbox_version: 1.22.10970
+
 #- kfreestyle2d installation options:
 kfreestyle2d_git_dest: '/tmp/kfreestyle2d'
 

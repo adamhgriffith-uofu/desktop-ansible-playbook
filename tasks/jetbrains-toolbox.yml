@@ -1,2 +1,72 @@
 ---
 # Use https://github.com/webarchitect609/ansible-role-jet-brains-toolbox/blob/master/tasks/main.yml
+
+- name: Check currently installed version of JetBrains Toolbox
+  shell: >-
+    {{ jetbrainstoolbox_install_dir }}/jetbrains-toolbox --version | sed 's/^Toolbox \(.*\)$/\1/'
+  register: jetbrainstoolbox_current_version
+  failed_when: no
+  changed_when: no
+
+- name: Remove existing JetBrains Toolbox installation
+  file:
+    path: '{{ jetbrainstoolbox_install_dir }}'
+    state: absent
+  when:
+    - jetbrainstoolbox_current_version.rc == 0
+    - jetbrainstoolbox_current_version.stdout != jetbrainstoolbox_version
+
+- name: Ensure JetBrains Toolbox directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  with_items:
+    - "{{ jetbrainstoolbox_install_dir }}"
+
+- name: Download checksum for JetBrains Toolbox
+  get_url:
+    url: "{{ jetbrainstoolbox_mirror }}/{{ jetbrainstoolbox_archive_filename }}.sha256"
+    dest: /tmp
+  when: jetbrainstoolbox_current_version.stdout != jetbrainstoolbox_version
+
+- name: Modify checksum for JetBrains Toolbox
+  shell: >-
+    cat /tmp/{{ jetbrainstoolbox_archive_filename }}.sha256 | awk '{ print $1 }'
+  register: jetbrainstoolbox_sha
+  when: jetbrainstoolbox_current_version.stdout != jetbrainstoolbox_version
+
+- name: Download JetBrains Toolbox
+  get_url:
+    url: "{{ jetbrainstoolbox_mirror }}/{{ jetbrainstoolbox_archive_filename }}"
+    checksum: "sha256:'{{ jetbrainstoolbox_sha.stdout }}'"
+    dest: /tmp
+  when: jetbrainstoolbox_current_version.stdout != jetbrainstoolbox_version
+
+- name: Extract JetBrains Toolbox download archive
+  unarchive:
+    src: "/tmp/{{ jetbrainstoolbox_archive_filename }}"
+    dest: "{{ jetbrainstoolbox_install_dir }}"
+    extra_opts:
+      - '--strip-components=1'
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: jetbrainstoolbox_current_version.stdout != jetbrainstoolbox_version
+
+- name: Delete JetBrains Toolbox temporary files
+  file:
+    path: "/tmp/{{ jetbrainstoolbox_archive_filename }}"
+    state: absent
+
+- name: Create JetBrains Toolbox symbolic link
+  file:
+    src: "{{ jetbrainstoolbox_install_dir }}/jetbrains-toolbox"
+    dest: '/usr/local/bin/jetbrains-toolbox'
+    state: link
+    owner: root
+    group: root
+    mode: '0755'

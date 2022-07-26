@@ -1,6 +1,6 @@
 ---
 - name: Check currently installed version of Helm3
-  command: >-
+  shell: >-
     {{ helm_install_dir }}/helm version --client --template {{ "'{{ if .Version }}{{ .Version }}{{ else }}{{ .Client.SemVer }}{{ end }}'" }}
   register: helm_current_version
   failed_when: no

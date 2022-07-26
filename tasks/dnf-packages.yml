@@ -1,6 +1,6 @@
 ---
 - name: Clean DNF Caches
-  command: >-
+  shell: >-
     dnf clean all
 
 - name: Extra Packages for Enterprise Linux (EPEL)
