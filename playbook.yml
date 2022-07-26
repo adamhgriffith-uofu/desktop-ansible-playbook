@@ -22,5 +22,8 @@
     - name: GitKraken
       include_tasks: "./tasks/gitkraken.yml"
 
+    - name: Git Config
+      include_tasks: "./tasks/git.yml"
+
     - name: JetBrains Toolbox
       include_tasks: "./tasks/jetbrains-toolbox.yml"

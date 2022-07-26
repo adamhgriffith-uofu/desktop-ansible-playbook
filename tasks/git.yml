@@ -1,0 +1,7 @@
+---
+
+- name: Add a setting to ~/.gitconfig
+  community.general.git_config:
+    name: alias.ci
+    scope: global
+    value: commit

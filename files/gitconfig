@@ -1,0 +1,4 @@
+user.email=you@email.com
+user.name=Your Name
+pull.ff=only
+core.excludesfile=/home/you/.gitignore
