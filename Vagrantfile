@@ -68,12 +68,13 @@ Vagrant.configure("2") do |config|
     vb.name = ENV['HOSTNAME']
   end
 
-  # Run a script on provisioning the box to format the file system
+  # Run a script on provisioning the box to format the file system:
   config.vm.provision "shell", inline: <<-SHELL
-        dnf install -y cloud-utils-growpart
-        growpart /dev/sda 1
-        xfs_growfs /dev/sda1
-      SHELL
+    # Source: https://medium.com/@panda1100/expand-disk-size-of-rocky-linux-8-vagrant-box-for-libvirt-provider-e51b87ef497
+    dnf install -y cloud-utils-growpart
+    growpart /dev/sda 1
+    xfs_growfs /dev/sda1
+  SHELL
 
   # Run Ansible from the Vagrant host:
   config.vm.provision "ansible", run:"always" do |ansible|
