@@ -18,3 +18,6 @@
 
     - name: kfreestyle2d
       include_tasks: "./tasks/kfreestyle2d.yml"
+
+    - name: GitKraken
+      include_tasks: "./tasks/gitkraken.yml"
