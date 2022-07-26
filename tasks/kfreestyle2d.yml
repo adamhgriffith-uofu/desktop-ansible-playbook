@@ -1,0 +1,27 @@
+---
+- name: Checking if kfreestyle2d install directory already exists
+  stat:
+    path: '/usr/local/share/kfreestyle2d'
+  register: kfreestyle2d_install_path
+
+- name: Clone the kfreestyle2d repository
+  git:
+    repo: "https://github.com/whereswaldon/kfreestyle2d.git"
+    dest: "{{ kfreestyle2d_git_dest }}"
+    depth: 1
+    single_branch: yes
+    version: master
+    force: yes
+    update: yes
+  when: not kfreestyle2d_install_path.stat.exists
+
+- name: Build the default target
+  make:
+    chdir: "{{ kfreestyle2d_git_dest }}"
+  when: not kfreestyle2d_install_path.stat.exists
+
+- name: Run 'install' target
+  make:
+    chdir: "{{ kfreestyle2d_git_dest }}"
+    target: install
+  when: not kfreestyle2d_install_path.stat.exists

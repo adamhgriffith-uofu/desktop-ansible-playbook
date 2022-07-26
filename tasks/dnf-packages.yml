@@ -1,6 +1,10 @@
 ---
+- name: Clean DNF Caches
+  shell: |
+    dnf clean all
+
 - name: Extra Packages for Enterprise Linux (EPEL)
-  package:
+  dnf:
     name:
       - epel-release
     state: present
@@ -18,6 +22,7 @@
     - google-cloud-sdk.repo
     - hashicorp.repo
     - kubernetes.repo
+    - nvidia-cuda.repo
     - slack.repo
     - virtualbox.repo
     - vscode.repo
@@ -34,19 +39,31 @@
     - "{{ hashicorp_rpm_key }}"
     - "{{ kubernetes_rpm_key }}"
     - "{{ kubernetes_yum_key }}"
+    - "{{ nvidia_cuda_rhel8_rpm_key }}"
+    - "{{ nvidia_cuda_rhel9_rpm_key }}"
     - "{{ slack_rpm_key }}"
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
 
-- name: Install packages via system package manager
-  package:
+- name: Install DNF modules
+  dnf:
+    name:
+      - "@nvidia-driver:latest-dkms"
+    state: present
+
+- name: Install DNF packages
+  dnf:
     name:
       - 1password
       - code
+      - cuda
       - firefox
       - firewalld
+      - gcc
       - git
       - google-chrome-stable
+      - kernel-devel-{{ ansible_kernel }}
+      - kernel-headers-{{ ansible_kernel }}
       - kubectl-{{ kubectl_version }}
       - podman
       - podman-compose

@@ -15,3 +15,6 @@
 
     - name: Helm3
       include_tasks: "./tasks/helm3.yml"
+
+    - name: kfreestyle2d
+      include_tasks: "./tasks/kfreestyle2d.yml"
