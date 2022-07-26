@@ -1,13 +1,17 @@
 ---
-- name: Clean DNF Caches
-  shell: >-
-    dnf clean all
+#- name: Clean DNF Caches
+#  shell: >-
+#    dnf clean all
 
 - name: Extra Packages for Enterprise Linux (EPEL)
   dnf:
     name:
       - epel-release
     state: present
+
+- name: Add Rocky PowerTools repo
+  shell: >-
+    dnf config-manager --set-enabled powertools
 
 - name: Add other package repo files
   template:
@@ -48,6 +52,7 @@
 - name: Install DNF modules
   dnf:
     name:
+      - "@Development tools"
       - "@nvidia-driver:latest-dkms"
     state: present
 

@@ -27,3 +27,9 @@
 
     - name: JetBrains Toolbox
       include_tasks: "./tasks/jetbrains-toolbox.yml"
+
+    - name: GlobalProtect VPN Client
+      debug:
+        msg: |
+          Visit https://software-catalog.app.utah.edu to order and download the Employee-licensed GlobalProtect VPN Client.
+
