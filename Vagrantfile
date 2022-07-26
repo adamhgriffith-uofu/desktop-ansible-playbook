@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = "false"
 
   # Customize the disksize:
-  config.disksize.size = '10GB'
+  config.disksize.size = '25GB'
 
   # Customize the hostname:
   config.vm.hostname = ENV['HOSTNAME']
