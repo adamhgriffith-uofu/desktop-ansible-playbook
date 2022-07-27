@@ -1,7 +1,4 @@
 ---
-#- name: Clean DNF Caches
-#  shell: >-
-#    dnf clean all
 
 - name: Extra Packages for Enterprise Linux (EPEL)
   dnf:

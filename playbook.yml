@@ -22,6 +22,7 @@
     - name: GitKraken
       include_tasks: "./tasks/gitkraken.yml"
 
+# TODO: Implement GitConfig task.
     - name: Git Config
       include_tasks: "./tasks/git.yml"
 
@@ -33,3 +34,8 @@
         msg: |
           Visit https://software-catalog.app.utah.edu to order and download the Employee-licensed GlobalProtect VPN Client.
 
+  handlers:
+#    - name: Clean DNF Caches
+#      shell: >-
+#        dnf clean all
+#      listen: clean_dnf_all
