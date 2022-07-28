@@ -6,6 +6,9 @@
     - name: DNF Packages
       include_tasks: "tasks/dnf-packages.yml"
 
+    - name: X.Org Server
+      include_tasks: "tasks/xorg.yml"
+
     - name: Bash shell config
       include_tasks: "tasks/bashrc.yml"
 

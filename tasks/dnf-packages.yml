@@ -47,14 +47,16 @@
 - name: Install DNF modules
   dnf:
     name:
+      - "@base-x"
+      - "@Container management"
       - "@Development tools"
       - "@nvidia-driver:latest-dkms"
+      - "@Xfce"
     state: present
 
 - name: Install System-related packages
   dnf:
     name:
-
       - bash-completion
       - dnf-plugins-core
       - cuda
@@ -70,7 +72,7 @@
       - firefox
     state: present
 
-- name: Install K8s Google Cloud SDK components
+- name: Install Kubectl & Google Cloud SDK components
   dnf:
     name:
       - google-cloud-sdk
@@ -79,10 +81,9 @@
       - kubectl-{{ kubectl_version }}
     state: present
 
-- name: Install containerization tools
+- name: Install extra containerization tools
   dnf:
     name:
-      - podman
       - podman-compose
     state: present
 

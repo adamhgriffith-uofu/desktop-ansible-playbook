@@ -1,5 +1,4 @@
 ---
-# Use https://docs.ansible.com/ansible/latest/collections/community/general/git_config_module.html
 
 - name: Add system-wide gitignore
   template:
