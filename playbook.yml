@@ -6,6 +6,9 @@
     - name: DNF Packages
       include_tasks: "tasks/dnf-packages.yml"
 
+    - name: Bash shell config
+      include_tasks: "tasks/bashrc.yml"
+
     - name: Firewall
       include_tasks: "./tasks/firewalld.yml"
 
