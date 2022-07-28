@@ -22,9 +22,8 @@
     - name: GitKraken
       include_tasks: "./tasks/gitkraken.yml"
 
-# TODO: Implement GitConfig task.
     - name: Git Config
-      include_tasks: "./tasks/git.yml"
+      include_tasks: "./tasks/gitconfig.yml"
 
     - name: JetBrains Toolbox
       include_tasks: "./tasks/jetbrains-toolbox.yml"

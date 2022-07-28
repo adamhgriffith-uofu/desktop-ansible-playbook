@@ -1,0 +1,22 @@
+---
+# Use https://docs.ansible.com/ansible/latest/collections/community/general/git_config_module.html
+
+- name: Add system-wide gitignore
+  template:
+    src: 'templates/gitignore.j2'
+    dest: '/etc/gitignore'
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add gitconfig pull.ff system-wide
+  community.general.git_config:
+    name: pull.ff
+    scope: system
+    value: only
+
+- name: Add gitconfig core.excludesfile system-wide
+  community.general.git_config:
+    name: core.excludesfile
+    scope: system
+    value: /etc/gitignore
