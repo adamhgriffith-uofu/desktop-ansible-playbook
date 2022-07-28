@@ -1,0 +1,17 @@
+---
+- name: Checking if Zoom install directory already exists
+  stat:
+    path: '/usr/bin/zoom'
+  register: zoom_install_path
+
+- name: Import Zoom rpm key
+  rpm_key:
+    state: present
+    key: "{{ zoom_rpm_key }}"
+  when: not zoom_install_path.stat.exists
+
+- name: Install Zoom
+  dnf:
+    name: "{{ zoom_rpm }}"
+    state: present
+  when: not zoom_install_path.stat.exists

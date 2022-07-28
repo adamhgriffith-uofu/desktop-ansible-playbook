@@ -45,7 +45,6 @@
     - "{{ slack_rpm_key }}"
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
-    - "{{ zoom_rpm_key }}"
 
 - name: Install DNF modules
   dnf:
@@ -79,5 +78,4 @@
       - which
       - vagrant
       - VirtualBox-{{ virtualbox_version }}
-      - '{{ zoom_rpm }}'
     state: present

@@ -29,6 +29,9 @@
     - name: JetBrains Toolbox
       include_tasks: "./tasks/jetbrains-toolbox.yml"
 
+    - name: Zoom
+      include_tasks: "./tasks/zoom.yml"
+
     - name: GlobalProtect VPN Client
       debug:
         msg: |
