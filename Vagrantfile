@@ -62,7 +62,7 @@ Vagrant.configure("2") do |config|
     vb.gui = false
 
     # Customize the amount of memory on the VM:
-    vb.memory = 2048
+    vb.memory = 8192
 
     # Customize the name that appears in the VirtualBox GUI:
     vb.name = ENV['HOSTNAME']
