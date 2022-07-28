@@ -20,3 +20,38 @@
     name: core.excludesfile
     scope: system
     value: /etc/gitignore
+
+- name: "Add gitconfig user.email globally for {{ local_user }}"
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ local_user_email }}"
+  become_user: "{{ local_user }}"
+
+- name: "Add gitconfig user.name globally for {{ local_user }}"
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ local_user_name }}"
+  become_user: "{{ local_user }}"
+
+- name: "Add gitconfig user.signingkey globally for {{ local_user }}"
+  community.general.git_config:
+    name: user.signingkey
+    scope: global
+    value: "{{ local_user_gpg_key }}"
+  become_user: "{{ local_user }}"
+
+- name: "Add gitconfig commit.gpgsign globally for {{ local_user }}"
+  community.general.git_config:
+    name: commit.gpgsign
+    scope: global
+    value: true
+  become_user: "{{ local_user }}"
+
+- name: "Add gitconfig tag.forcesignannotated globally for {{ local_user }}"
+  community.general.git_config:
+    name: tag.forcesignannotated
+    scope: global
+    value: true
+  become_user: "{{ local_user }}"

@@ -79,8 +79,10 @@ Vagrant.configure("2") do |config|
   # Run Ansible from the Vagrant host:
   config.vm.provision "ansible", run:"always" do |ansible|
     ansible.extra_vars = {
-      lorem_ipsum: secrets["lorem_ipsum"],
-      pellentesque_lobortis: secrets["pellentesque_lobortis"]
+      local_user: secrets["local_user"],
+      local_user_email: secrets["local_user_email"],
+      local_user_name: secrets["local_user_name"],
+      local_user_gpg_key: secrets["local_user_gpg_key"]
     }
     ansible.host_key_checking = false
     ansible.playbook = "./playbook.yml"
