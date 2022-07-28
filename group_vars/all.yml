@@ -45,3 +45,7 @@ virtualbox_version: 6.1
 
 #- VSCode installation options:
 vscode_rpm_key: https://packages.microsoft.com/keys/microsoft.asc
+
+#- Zoom installation options:
+zoom_rpm: https://zoom.us/client/latest/zoom_x86_64.rpm
+zoom_rpm_key: https://zoom.us/linux/download/pubkey
