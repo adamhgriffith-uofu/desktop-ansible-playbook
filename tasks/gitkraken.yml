@@ -6,7 +6,7 @@
 
 - name: Install GitKraken
   dnf:
-    name: https://release.axocdn.com/linux/gitkraken-amd64.rpm
+    name: "{{ gitkraken_rpm }}"
     disable_gpg_check: yes
     state: present
   when: not gitkraken_install_path.stat.exists

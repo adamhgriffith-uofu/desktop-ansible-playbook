@@ -1,4 +1,7 @@
 
+#- GitKraken installation options:
+gitkraken_rpm: https://release.axocdn.com/linux/gitkraken-amd64.rpm
+
 #- Google Chrome installation options:
 googlechrome_rpm_key: https://dl.google.com/linux/linux_signing_key.pub
 
