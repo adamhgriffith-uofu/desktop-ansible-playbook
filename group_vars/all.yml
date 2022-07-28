@@ -27,10 +27,8 @@ jetbrainstoolbox_version: 1.22.10970
 #- kfreestyle2d installation options:
 kfreestyle2d_git_dest: '/tmp/kfreestyle2d'
 
-#- Kubernetes-related installation options:
-kubernetes_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-kubernetes_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
-kubectl_version: 1.24.3
+#- Kubectl installation options:
+kubectl_version: 1.22.8
 
 #- NVidia-related installation options:
 nvidia_cuda_rhel8_rpm_key: https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/D42D0685.pub
