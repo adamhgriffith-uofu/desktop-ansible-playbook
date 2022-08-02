@@ -18,7 +18,7 @@
   community.general.git_config:
     name: core.excludesfile
     scope: system
-    value: /etc/gitignore
+    value: '/etc/gitignore'
 
 - name: "Add gitconfig user.email globally for {{ local_user }}"
   community.general.git_config:

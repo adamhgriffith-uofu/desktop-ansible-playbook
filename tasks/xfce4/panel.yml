@@ -80,7 +80,95 @@
     - 3
   become_user: "{{ local_user }}"
 
-- name: "Set up panel datetime display"
+- name: "Set up panel output-names"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item.key }}/output-name"
+    value_type: string
+    value: "{{ item.value }}"
+  loop: "{{ panel_data | dict2items }}"
+  vars:
+    panel_data:
+      1: 'DP-0.8'
+      2: 'DP-2.8'
+      3: 'DP-4'
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel plugin ids"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item.key }}/plugin-ids"
+    value_type: string
+    value: "{{ item.value }}"
+  loop: "{{ panel_data | dict2items }}"
+  vars:
+    panel_data:
+      1: ['7', '23', '9', '1', '15', '2', '3', '4', '5', '6', '8', '11', '12', '13', '22']
+      2: ['24', '16', '18', '19', '17', '20', '21']
+      3: ['10', '25', '26']
+  become_user: "{{ local_user }}"
+
+- name: "Set up plugin types"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item.key }}"
+    value_type: string
+    value: "{{ item.value }}"
+  loop: "{{ plugin_data | dict2items }}"
+  vars:
+    plugin_data:
+      1: 'launcher'
+      2: 'tasklist'
+      3: 'separator'
+      4: 'pager'
+      5: 'separator'
+      6: 'systray'
+      7: 'whiskermenu'
+      8: 'pulseaudio'
+      9: 'launcher'
+      10: 'tasklist'
+      11: 'separator'
+      12: 'clock'
+      13: 'separator'
+      15: 'launcher'
+      16: 'separator'
+      17: 'clock'
+      18: 'pager'
+      19: 'separator'
+      20: 'separator'
+      21: 'showdesktop'
+      22: 'showdesktop'
+      23: 'separator'
+      24: 'tasklist'
+      25: 'separator'
+      26: 'clock'
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel separators expand"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item }}/expand"
+    value_type: bool
+    value: true
+  loop:
+    - 3
+    - 16
+    - 25
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel tasklist include-all-monitors"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item }}/include-all-monitors"
+    value_type: bool
+    value: false
+  loop:
+    - 2
+    - 10
+    - 24
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel clock datetime displays"
   xfconf:
     channel: 'xfce4-panel'
     property: "/plugins/plugin-{{ item }}/digital-format"
@@ -92,7 +180,7 @@
     - 26
   become_user: "{{ local_user }}"
 
-- name: "Set up panel timezone"
+- name: "Set up panel clock timezones"
   xfconf:
     channel: 'xfce4-panel'
     property: "/plugins/plugin-{{ item }}/timezone"
@@ -102,4 +190,15 @@
     - 12
     - 17
     - 26
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel pager rows"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item }}/pager"
+    value_type: int
+    value: 2
+  loop:
+    - 4
+    - 18
   become_user: "{{ local_user }}"

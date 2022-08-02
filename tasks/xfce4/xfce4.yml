@@ -3,6 +3,9 @@
 - name: Xfce4 xsettings
   include_tasks: "xsettings.yml"
 
+- name: Xfce4 xfwm4
+  include_tasks: "xfwm4.yml"
+
 - name: Xfce4 Desktop
   include_tasks: "desktop.yml"
 
