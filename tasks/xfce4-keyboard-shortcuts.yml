@@ -1,0 +1,41 @@
+---
+
+- name: "Change Whiskermenu keyboard shortcut"
+  xfconf:
+    channel: 'xfce4-keyboard-shortcuts'
+    property: '/commands/custom/Menu'
+    value_type: string
+    value: 'xfce4-popup-whiskermenu'
+  become_user: "{{ local_user }}"
+
+- name: "Change 'Tile window to the top' keyboard shortcut"
+  xfconf:
+    channel: 'xfce4-keyboard-shortcuts'
+    property: '/xfwm4/default/<Super>KP_Down'
+    value_type: string
+    value: 'tile_up_key'
+  become_user: "{{ local_user }}"
+
+- name: "Change 'Tile window to the bottom' keyboard shortcut"
+  xfconf:
+    channel: 'xfce4-keyboard-shortcuts'
+    property: '/xfwm4/default/<Super>KP_Up'
+    value_type: string
+    value: 'tile_down_key'
+  become_user: "{{ local_user }}"
+
+- name: "Change 'Tile window to the left' keyboard shortcut"
+  xfconf:
+    channel: 'xfce4-keyboard-shortcuts'
+    property: '/xfwm4/default/<Super>KP_Left'
+    value_type: string
+    value: 'tile_left_key'
+  become_user: "{{ local_user }}"
+
+- name: "Change 'Tile window to the right' keyboard shortcut"
+  xfconf:
+    channel: 'xfce4-keyboard-shortcuts'
+    property: '/xfwm4/default/<Super>KP_Right'
+    value_type: string
+    value: 'tile_right_key'
+  become_user: "{{ local_user }}"

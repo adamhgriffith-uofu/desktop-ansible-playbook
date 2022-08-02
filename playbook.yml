@@ -1,6 +1,8 @@
 ---
 - hosts: all
   become: yes
+#  environment:
+#    DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 
   tasks:
     - name: DNF Packages
@@ -8,6 +10,12 @@
 
     - name: X.Org Server
       include_tasks: "tasks/xorg.yml"
+
+    - name: Xfce4 Panel
+      include_tasks: "tasks/xfce4-panel.yml"
+
+    - name: Xfce4 Keyboard Shortcuts
+      include_tasks: "tasks/xfce4-keyboard-shortcuts.yml"
 
     - name: Bash shell config
       include_tasks: "tasks/bashrc.yml"

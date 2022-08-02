@@ -1,0 +1,105 @@
+---
+
+- name: "Set up panel dark mode"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/dark-mode"
+    value_type: bool
+    value: true
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel background style"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/background-style"
+    value_type: int
+    value: 0
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel icon size"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/icon-size"
+    value_type: int
+    value: 0
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel length"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/length"
+    value_type: int
+    value: 100
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel mode"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/mode"
+    value_type: int
+    value: 0
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel position locked"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/position-locked"
+    value_type: bool
+    value: true
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel size"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/panels/panel-{{ item }}/size"
+    value_type: int
+    value: 32
+  with_items:
+    - 1
+    - 2
+    - 3
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel datetime display"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item }}/digital-format"
+    value_type: string
+    value: "%A %B %_d, %l:%M %p"
+  with_items:
+    - 12
+    - 17
+    - 26
+  become_user: "{{ local_user }}"
+
+- name: "Set up panel timezone"
+  xfconf:
+    channel: 'xfce4-panel'
+    property: "/plugins/plugin-{{ item }}/timezone"
+    value_type: string
+    value: "America/Denver"
+  with_items:
+    - 12
+    - 17
+    - 26
+  become_user: "{{ local_user }}"
