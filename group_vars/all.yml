@@ -50,6 +50,11 @@ virtualbox_version: 6.1
 #- VSCode installation options:
 vscode_rpm_key: https://packages.microsoft.com/keys/microsoft.asc
 
+#- Xfce4 installation options:
+xfce4_whiskermenu_face: https://www.cascadin.com/wp-content/themes/cascadin/img/team/adam-griffith-250.png
+xfce4_whiskermenu_favorites: "xfce4-terminal-emulator.desktop,firefox.desktop,google-chrome.desktop,gitkraken.desktop,jetbrains-idea.desktop,Zoom.desktop,org.keepassxc.KeePassXC.desktop,1password.desktop,slack.desktop,xfce4-file-manager.desktop,gnome-system-monitor.desktop,org.gnome.gedit.desktop"
+xfce4_whiskermenu_title: "Horkle Snorkle"
+
 #- Zoom installation options:
 zoom_rpm: https://zoom.us/client/latest/zoom_x86_64.rpm
 zoom_rpm_key: https://zoom.us/linux/download/pubkey

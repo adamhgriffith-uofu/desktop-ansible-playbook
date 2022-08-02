@@ -1,8 +1,6 @@
 ---
 - hosts: all
   become: yes
-#  environment:
-#    DBUS_SESSION_BUS_ADDRESS: unix:path=/run/user/1000/bus
 
   tasks:
     - name: DNF Packages

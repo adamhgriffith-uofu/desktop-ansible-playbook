@@ -227,9 +227,8 @@
   blockinfile:
     path: '$HOME/.config/xfce4/panel/whiskermenu-7.rc'
     block: |
-      favorites=xfce4-terminal-emulator.desktop,firefox.desktop,google-chrome.desktop,gitkraken.desktop,jetbrains-idea.desktop,Zoom.desktop,org.keepassxc.KeePassXC.desktop,1password.desktop,slack.desktop,xfce4-file-manager.desktop,gnome-system-monitor.desktop,org.gnome.gedit.desktop
-      recent=xfce4-file-manager.desktop,google-chrome.desktop,org.keepassxc.KeePassXC.desktop,virtualbox.desktop,xfce4-power-manager-settings.desktop,xfce-wm-settings.desktop,xfce-keyboard-settings.desktop,wireshark.desktop,org.gnome.gedit.desktop,Zoom.desktop
-      button-title=Horkle Snorkle
+      favorites={{ xfce4_whiskermenu_favorites }}
+      button-title={{ xfce4_whiskermenu_title }}
       button-icon=system-logo-icon
       button-single-row=false
       show-button-title=true
@@ -278,4 +277,11 @@
       show-command-profile=true
       search-actions=5
     state: present
+  become_user: "{{ local_user }}"
+
+- name: "Download Whiskermenu ~/.face for {{ local_user }}"
+  get_url:
+    url: "{{ xfce4_whiskermenu_face }}"
+    dest: "$HOME/.face"
+    mode: '0664'
   become_user: "{{ local_user }}"
