@@ -18,6 +18,9 @@
     - name: SELinux
       include_tasks: "./tasks/selinux.yml"
 
+    - name: Conda
+      include_tasks: "./tasks/conda.yml"
+
     - name: Helm3
       include_tasks: "./tasks/helm3.yml"
 
@@ -40,8 +43,8 @@
       debug:
         msg: |
           Visit https://software-catalog.app.utah.edu to order and download the Employee-licensed GlobalProtect VPN Client.
-
-  handlers:
+#
+#  handlers:
 #    - name: Clean DNF Caches
 #      shell: >-
 #        dnf clean all

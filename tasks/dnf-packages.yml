@@ -19,6 +19,7 @@
     mode: '0644'
   with_items:
     - 1password.repo
+    - conda.repo
     - google-chrome.repo
     - google-cloud-sdk.repo
     - hashicorp.repo
@@ -33,13 +34,14 @@
     state: present
     key: "{{ item }}"
   with_items:
-    - "{{ onepassword_rpm_key }}"
+    - "{{ conda_rpm_key }}"
     - "{{ googlechrome_rpm_key }}"
     - "{{ googlecloudsdk_rpm_key }}"
     - "{{ googlecloudsdk_yum_key }}"
     - "{{ hashicorp_rpm_key }}"
     - "{{ nvidia_cuda_rhel8_rpm_key }}"
     - "{{ nvidia_cuda_rhel9_rpm_key }}"
+    - "{{ onepassword_rpm_key }}"
     - "{{ slack_rpm_key }}"
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
@@ -92,6 +94,7 @@
     name:
       - 1password
       - code
+      - conda
       - git
       - keepassxc
       - slack

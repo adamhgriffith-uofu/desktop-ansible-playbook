@@ -1,0 +1,25 @@
+---
+
+- name: "Set Conda Profile for {{ local_user }}"
+  shell: source /opt/conda/etc/profile.d/conda.sh && conda init --verbose
+  args:
+    executable: /bin/bash
+  become_user: "{{ local_user }}"
+
+- name: Verify system-wide .condarc is present
+  file:
+    path: '/opt/conda/.condarc'
+    state: touch
+    owner: root
+    group: root
+    mode: 0644
+    modification_time: preserve
+    access_time: preserve
+
+
+- name: "Add auto_activate_base: false to .condarc system-wide"
+  lineinfile:
+    path: '/opt/conda/.condarc'
+    line: 'auto_activate_base: false'
+    state: present
+    validate: 'bash -n %s'

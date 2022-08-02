@@ -1,4 +1,7 @@
 
+#- Conda installation options:
+conda_rpm_key: https://repo.anaconda.com/pkgs/misc/gpgkeys/anaconda.asc
+
 #- GitKraken installation options:
 gitkraken_rpm: https://release.axocdn.com/linux/gitkraken-amd64.rpm
 
