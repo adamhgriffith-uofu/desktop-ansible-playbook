@@ -1,0 +1,11 @@
+---
+
+all:
+  children:
+    group1:
+      hosts:
+        desktop:
+          ansible_host: '<host>'
+  vars:
+    ansible_user: '<local_user_with_sudo>'
+    ansible_password: '<local_user_password>'
