@@ -1,7 +1,9 @@
 ---
 
 - name: "Set Conda Profile for {{ local_user }}"
-  shell: source /opt/conda/etc/profile.d/conda.sh && conda init --verbose
+  shell: |-
+    source /opt/conda/etc/profile.d/conda.sh
+    conda init --verbose
   args:
     executable: /bin/bash
   become_user: "{{ local_user }}"

@@ -16,31 +16,34 @@
       include_tasks: "tasks/bashrc.yml"
 
     - name: Firewall
-      include_tasks: "./tasks/firewalld.yml"
+      include_tasks: "tasks/firewalld.yml"
 
     - name: SELinux
-      include_tasks: "./tasks/selinux.yml"
+      include_tasks: "tasks/selinux.yml"
+
+    - name: SSH Config
+      include_tasks: "tasks/sshconfig.yml"
 
     - name: Conda
-      include_tasks: "./tasks/conda.yml"
+      include_tasks: "tasks/conda.yml"
 
     - name: Helm3
-      include_tasks: "./tasks/helm3.yml"
+      include_tasks: "tasks/helm3.yml"
 
     - name: kfreestyle2d
-      include_tasks: "./tasks/kfreestyle2d.yml"
+      include_tasks: "tasks/kfreestyle2d.yml"
 
     - name: GitKraken
-      include_tasks: "./tasks/gitkraken.yml"
+      include_tasks: "tasks/gitkraken.yml"
 
     - name: Git Config
-      include_tasks: "./tasks/gitconfig.yml"
+      include_tasks: "tasks/gitconfig.yml"
 
     - name: JetBrains Toolbox
-      include_tasks: "./tasks/jetbrains-toolbox.yml"
+      include_tasks: "tasks/jetbrains-toolbox.yml"
 
     - name: Zoom
-      include_tasks: "./tasks/zoom.yml"
+      include_tasks: "tasks/zoom.yml"
 
     - name: GlobalProtect VPN Client
       debug:

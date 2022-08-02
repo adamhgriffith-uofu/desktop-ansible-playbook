@@ -43,6 +43,11 @@ onepassword_rpm_key: https://downloads.1password.com/linux/keys/1password.asc
 #- Slack installation options:
 slack_rpm_key: https://packagecloud.io/gpg.key
 
+#- SSH config installation options:
+ssh_config_github_identityfile_path: "~/.github/ssh/id_ed25519"
+ssh_config_gitlab_host: "gitlab.chpc.utah.edu"
+ssh_config_gitlab_identityfile_path: "~/.gitlab/ssh/id_ed25519"
+
 #- VirtualBox installation options:
 virtualbox_rpm_key: https://www.virtualbox.org/download/oracle_vbox.asc
 virtualbox_version: 6.1
