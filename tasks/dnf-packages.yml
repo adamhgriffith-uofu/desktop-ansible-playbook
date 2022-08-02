@@ -65,6 +65,7 @@
       - firewalld
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
+      - sshpass
       - xfce4-about.x86_64
       - xfce4-clipman-plugin.x86_64
       - xfce4-screenshooter.x86_64
