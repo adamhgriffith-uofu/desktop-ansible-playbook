@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
     vb.default_nic_type = "virtio"
 
     # Display the VirtualBox GUI when booting the machine:
-    vb.gui = false
+    vb.gui = true
 
     # Customize the amount of memory on the VM:
     vb.memory = 8192
