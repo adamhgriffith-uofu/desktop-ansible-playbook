@@ -23,7 +23,7 @@
     owner: root
     group: root
     mode: 0755
-  with_items:
+  loop:
     - "{{ jetbrainstoolbox_install_dir }}"
 
 - name: Download checksum for JetBrains Toolbox

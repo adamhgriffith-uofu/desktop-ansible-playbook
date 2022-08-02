@@ -58,7 +58,7 @@
     property: "/backdrop/screen0/{{ item }}/workspace0/color-style"
     value_type: int
     value: 1
-  with_items:
+  loop:
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4
@@ -70,7 +70,7 @@
     property: "/backdrop/screen0/{{ item }}/workspace0/image-style"
     value_type: int
     value: 1
-  with_items:
+  loop:
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4
@@ -82,7 +82,7 @@
     property: "/backdrop/screen0/{{ item }}/workspace0/last-image"
     value_type: string
     value: "$HOME/Pictures/wallpaper/PlanetExpressShip.jpg"
-  with_items:
+  loop:
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4

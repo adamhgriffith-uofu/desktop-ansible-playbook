@@ -17,7 +17,7 @@
     owner: root
     group: root
     mode: '0644'
-  with_items:
+  loop:
     - 1password.repo
     - conda.repo
     - google-chrome.repo
@@ -33,7 +33,7 @@
   rpm_key:
     state: present
     key: "{{ item }}"
-  with_items:
+  loop:
     - "{{ conda_rpm_key }}"
     - "{{ googlechrome_rpm_key }}"
     - "{{ googlecloudsdk_rpm_key }}"

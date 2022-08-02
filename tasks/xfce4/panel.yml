@@ -14,7 +14,7 @@
     property: "/panels/panel-{{ item }}/background-style"
     value_type: int
     value: 0
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -26,7 +26,7 @@
     property: "/panels/panel-{{ item }}/icon-size"
     value_type: int
     value: 0
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -38,7 +38,7 @@
     property: "/panels/panel-{{ item }}/length"
     value_type: int
     value: 100
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -50,7 +50,7 @@
     property: "/panels/panel-{{ item }}/mode"
     value_type: int
     value: 0
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -62,7 +62,7 @@
     property: "/panels/panel-{{ item }}/position-locked"
     value_type: bool
     value: true
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -74,7 +74,7 @@
     property: "/panels/panel-{{ item }}/size"
     value_type: int
     value: 32
-  with_items:
+  loop:
     - 1
     - 2
     - 3
@@ -86,7 +86,7 @@
     property: "/plugins/plugin-{{ item }}/digital-format"
     value_type: string
     value: "%A %B %_d, %l:%M %p"
-  with_items:
+  loop:
     - 12
     - 17
     - 26
@@ -98,7 +98,7 @@
     property: "/plugins/plugin-{{ item }}/timezone"
     value_type: string
     value: "America/Denver"
-  with_items:
+  loop:
     - 12
     - 17
     - 26
