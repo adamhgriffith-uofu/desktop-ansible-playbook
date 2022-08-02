@@ -15,3 +15,22 @@
     name: "{{ zoom_rpm }}"
     state: present
   when: not zoom_install_path.stat.exists
+
+- name: "Ensure zoom background directory exists for {{ local_user }}"
+  file:
+    path: "$HOME/Pictures/zoom"
+    state: directory
+  become_user: "{{ local_user }}"
+
+- name: Download UofU Zoom backgrounds
+  get_url:
+    url: "{{ item.value }}"
+    dest: "$HOME/Pictures/zoom/{{ item.key }}.jpg"
+    mode: '0664'
+  loop: "{{ zoom_data | dict2items }}"
+  vars:
+    zoom_data:
+      PrideU: https://brand.utah.edu/wp-content/uploads/sites/69/2021/11/Zoom-Background_PrideU.jpg
+      BridgeNight: https://brand.utah.edu/wp-content/uploads/sites/69/2021/11/Zoom-Background_6.jpg
+      Observatory: https://brand.utah.edu/wp-content/uploads/sites/69/2021/11/Zoom-Background_25.jpg
+  become_user: "{{ local_user }}"
