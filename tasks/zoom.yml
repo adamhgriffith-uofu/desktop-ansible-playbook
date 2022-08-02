@@ -20,6 +20,9 @@
   file:
     path: "$HOME/Pictures/zoom"
     state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: 0755
   become_user: "{{ local_user }}"
 
 - name: Download UofU Zoom backgrounds

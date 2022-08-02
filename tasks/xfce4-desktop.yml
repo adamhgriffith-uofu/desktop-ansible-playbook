@@ -32,10 +32,58 @@
     value: true
   become_user: "{{ local_user }}"
 
-- name: "Set up 'XXXX' on desktop"
+- name: "Ensure wallpaper directory exists for {{ local_user }}"
+  file:
+    path: "$HOME/Pictures/wallpaper"
+    state: directory
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
+    mode: 0755
+  become_user: "{{ local_user }}"
+
+- name: "Download desktop wallpaper"
+  get_url:
+    url: "{{ item.value }}"
+    dest: "$HOME/Pictures/wallpaper/{{ item.key }}.jpg"
+    mode: '0664'
+  loop: "{{ wallpaper_data | dict2items }}"
+  vars:
+    wallpaper_data:
+      PlanetExpressShip: https://r4.wallpaperflare.com/wallpaper/854/704/956/futurama-planet-express-wallpaper-843c64684d79821954730469e9a1929d.jpg
+  become_user: "{{ local_user }}"
+
+- name: "Set workspace0 'color-style'"
   xfconf:
     channel: 'xfce4-desktop'
-    property: "XXXX"
-    value_type: bool
-    value: false
+    property: "/backdrop/screen0/{{ item }}/workspace0/color-style"
+    value_type: int
+    value: 1
+  with_items:
+    - monitorDP-0.8
+    - monitorDP-2.8
+    - monitorDP-4
+  become_user: "{{ local_user }}"
+
+- name: "Set workspace0 'image-style'"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/backdrop/screen0/{{ item }}/workspace0/image-style"
+    value_type: int
+    value: 1
+  with_items:
+    - monitorDP-0.8
+    - monitorDP-2.8
+    - monitorDP-4
+  become_user: "{{ local_user }}"
+
+- name: "Set workspace0 'last-image'"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/backdrop/screen0/{{ item }}/workspace0/last-image"
+    value_type: string
+    value: "$HOME/Pictures/wallpaper/PlanetExpressShip.jpg"
+  with_items:
+    - monitorDP-0.8
+    - monitorDP-2.8
+    - monitorDP-4
   become_user: "{{ local_user }}"

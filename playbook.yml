@@ -11,6 +11,9 @@
     - name: X.Org Server
       include_tasks: "tasks/xorg.yml"
 
+    - name: Xfce4 xsettings
+      include_tasks: "tasks/xfce4-xsettings.yml"
+
     - name: Xfce4 Desktop
       include_tasks: "tasks/xfce4-desktop.yml"
 
