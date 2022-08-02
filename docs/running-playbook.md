@@ -28,7 +28,7 @@ Activate the Conda environment, change directories, and verify Ansible can see t
 ```shell
 [your@localmachine]$ conda activate desktop-ansible
 (desktop-ansible) [your@localmachine]$ ansible all -m ping -i ./inventory/hosts.yml
-localhost | SUCCESS => {
+desktop| SUCCESS => {
     "changed": false,
     "ping": "pong"
 }
@@ -37,8 +37,8 @@ localhost | SUCCESS => {
 Test permission escalation on the host(s):
 
 ```shell
-(desktop-ansible) [your@localmachine]$ ansible all -a "/bin/ls -al /root" -i ./inventory/hosts.yml -u <local_user> --become --become-user root
-localhost | CHANGED | rc=0 >>
+(desktop-ansible) [your@localmachine]$ ansible all -a "/bin/ls -al /root" -i ./inventory/hosts.yml --become --become-user root
+desktop| CHANGED | rc=0 >>
 total 40
 dr-xr-x---.  3 root root  170 Feb 28 22:27 .
 dr-xr-xr-x. 17 root root  224 Jul  3  2017 ..
@@ -62,11 +62,4 @@ TASK [Gathering Facts] *********************************************************
 
 ## Teardown
 
-Currently, this is a manual process. At some point the playbook will be expanded to help uninstall Portal and return the host to a clean state.
-
-On your local machine deactivate the Conda environment:
-
-```shell
-(desktop-ansible) [your@localmachine]$ conda deactivate
-[your@localmachine]$
-```
+Follow the instructions found towards the bottom in [Local Ansible Playbook Development with Vagrant](development.md) tear down Conda.
