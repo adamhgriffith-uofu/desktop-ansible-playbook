@@ -11,20 +11,8 @@
     - name: X.Org Server
       include_tasks: "tasks/xorg.yml"
 
-    - name: Xfce4 xsettings
-      include_tasks: "tasks/xfce4-xsettings.yml"
-
-    - name: Xfce4 Desktop
-      include_tasks: "tasks/xfce4-desktop.yml"
-
-    - name: Xfce4 Power Manager
-      include_tasks: "tasks/xfce4-power-manager.yml"
-
-    - name: Xfce4 Panel
-      include_tasks: "tasks/xfce4-panel.yml"
-
-    - name: Xfce4 Keyboard Shortcuts
-      include_tasks: "tasks/xfce4-keyboard-shortcuts.yml"
+    - name: Xfce4
+      include_tasks: "tasks/xfce4/xfce4.yml"
 
     - name: Bash shell config
       include_tasks: "tasks/bashrc.yml"

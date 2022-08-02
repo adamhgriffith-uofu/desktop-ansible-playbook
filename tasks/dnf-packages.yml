@@ -65,6 +65,10 @@
       - firewalld
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
+      - xfce4-about.x86_64
+      - xfce4-clipman-plugin.x86_64
+      - xfce4-screenshooter.x86_64
+      - xfce4-whiskermenu-plugin.x86_64
     state: present
 
 - name: Install Web Browsers
