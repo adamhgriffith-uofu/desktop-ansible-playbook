@@ -1,0 +1,41 @@
+---
+
+- name: "Set up 'show-filesystem' on desktop"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/desktop-icons/file-icons/show-filesystem"
+    value_type: bool
+    value: false
+  become_user: "{{ local_user }}"
+
+- name: "Set up 'show-home' on desktop"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/desktop-icons/file-icons/show-home"
+    value_type: bool
+    value: false
+  become_user: "{{ local_user }}"
+
+- name: "Set up 'show-removable' on desktop"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/desktop-icons/file-icons/show-removable"
+    value_type: bool
+    value: false
+  become_user: "{{ local_user }}"
+
+- name: "Set up 'primary' on desktop"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "/desktop-icons/primary"
+    value_type: bool
+    value: true
+  become_user: "{{ local_user }}"
+
+- name: "Set up 'XXXX' on desktop"
+  xfconf:
+    channel: 'xfce4-desktop'
+    property: "XXXX"
+    value_type: bool
+    value: false
+  become_user: "{{ local_user }}"

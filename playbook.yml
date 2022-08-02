@@ -11,6 +11,12 @@
     - name: X.Org Server
       include_tasks: "tasks/xorg.yml"
 
+    - name: Xfce4 Desktop
+      include_tasks: "tasks/xfce4-desktop.yml"
+
+    - name: Xfce4 Power Manager
+      include_tasks: "tasks/xfce4-power-manager.yml"
+
     - name: Xfce4 Panel
       include_tasks: "tasks/xfce4-panel.yml"
 
