@@ -97,5 +97,6 @@
       - slack
       - terraform
       - vagrant
+      - wireshark
       - VirtualBox-{{ virtualbox_version }}
     state: present
