@@ -6,4 +6,4 @@
     property: '/general/workspace_names'
     value_type: string
     value: ['Primus', 'Secundus']
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"

@@ -1,12 +1,12 @@
 ---
 
-- name: "Set Conda Profile for {{ local_user }}"
+- name: "Set Conda Profile for {{ ansible_user }}"
   shell: |-
     source /opt/conda/etc/profile.d/conda.sh
     conda init --verbose
   args:
     executable: /bin/bash
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: Verify system-wide .condarc is present
   file:

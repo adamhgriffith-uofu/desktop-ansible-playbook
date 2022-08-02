@@ -1,44 +1,44 @@
 ---
 
-- name: "Add ssh config for {{ local_user }}"
+- name: "Add ssh config for {{ ansible_user }}"
   template:
     src: 'templates/.ssh/config.j2'
     dest: '$HOME/.ssh/config'
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: '0600'
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Ensure GitHub/GitLab ssh directories exist for {{ local_user }}"
+- name: "Ensure GitHub/GitLab ssh directories exist for {{ ansible_user }}"
   file:
     path: "$HOME/{{ item }}/ssh"
     state: directory
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0755
   loop:
     - .github
     - .gitlab
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Verify GitHub/GitLab ssh key files present for {{ local_user }}"
+- name: "Verify GitHub/GitLab ssh key files present for {{ ansible_user }}"
   file:
     path: "{{ item }}"
     state: touch
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0600
     modification_time: preserve
     access_time: preserve
   loop:
     - "{{ ssh_config_github_identityfile_path }}"
     - "{{ ssh_config_gitlab_identityfile_path }}"
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Update GitHub/GitLab ssh keys for {{ local_user }}"
+- name: "Update GitHub/GitLab ssh keys for {{ ansible_user }}"
   shell: |-
     echo "{{ ssh_config_github_identityfile }}" >| {{ ssh_config_github_identityfile_path }}
     echo "{{ ssh_config_gitlab_identityfile }}" >| {{ ssh_config_gitlab_identityfile_path }}
   args:
     executable: /bin/bash
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"

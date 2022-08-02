@@ -6,7 +6,7 @@
     property: "/desktop-icons/file-icons/show-filesystem"
     value_type: bool
     value: false
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up 'show-home' on desktop"
   xfconf:
@@ -14,7 +14,7 @@
     property: "/desktop-icons/file-icons/show-home"
     value_type: bool
     value: false
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up 'show-removable' on desktop"
   xfconf:
@@ -22,7 +22,7 @@
     property: "/desktop-icons/file-icons/show-removable"
     value_type: bool
     value: false
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up 'primary' on desktop"
   xfconf:
@@ -30,16 +30,16 @@
     property: "/desktop-icons/primary"
     value_type: bool
     value: true
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Ensure wallpaper directory exists for {{ local_user }}"
+- name: "Ensure wallpaper directory exists for {{ ansible_user }}"
   file:
     path: "$HOME/Pictures/wallpaper"
     state: directory
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0755
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Download desktop wallpaper"
   get_url:
@@ -50,7 +50,7 @@
   vars:
     wallpaper_data:
       PlanetExpressShip: https://r4.wallpaperflare.com/wallpaper/854/704/956/futurama-planet-express-wallpaper-843c64684d79821954730469e9a1929d.jpg
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set workspace0 'color-style'"
   xfconf:
@@ -62,7 +62,7 @@
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set workspace0 'image-style'"
   xfconf:
@@ -74,7 +74,7 @@
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set workspace0 'last-image'"
   xfconf:
@@ -86,4 +86,4 @@
     - monitorDP-0.8
     - monitorDP-2.8
     - monitorDP-4
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"

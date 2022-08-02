@@ -6,7 +6,7 @@
     property: "/panels/dark-mode"
     value_type: bool
     value: true
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel background style"
   xfconf:
@@ -18,7 +18,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel icon size"
   xfconf:
@@ -30,7 +30,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel length"
   xfconf:
@@ -42,7 +42,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel mode"
   xfconf:
@@ -54,7 +54,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel position locked"
   xfconf:
@@ -66,7 +66,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel size"
   xfconf:
@@ -78,7 +78,7 @@
     - 1
     - 2
     - 3
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel output-names"
   xfconf:
@@ -92,7 +92,7 @@
       1: 'DP-0.8'
       2: 'DP-2.8'
       3: 'DP-4'
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel plugin ids"
   xfconf:
@@ -106,7 +106,7 @@
       1: ['7', '23', '9', '1', '15', '2', '3', '4', '5', '6', '8', '11', '12', '13', '22']
       2: ['24', '16', '18', '19', '17', '20', '21']
       3: ['10', '25', '26']
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up plugin types"
   xfconf:
@@ -142,7 +142,7 @@
       24: 'tasklist'
       25: 'separator'
       26: 'clock'
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel separators expand"
   xfconf:
@@ -154,7 +154,7 @@
     - 3
     - 16
     - 25
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel tasklist include-all-monitors"
   xfconf:
@@ -166,7 +166,7 @@
     - 2
     - 10
     - 24
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel clock datetime displays"
   xfconf:
@@ -178,7 +178,7 @@
     - 12
     - 17
     - 26
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel clock timezones"
   xfconf:
@@ -190,7 +190,7 @@
     - 12
     - 17
     - 26
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
 - name: "Set up panel pager rows"
   xfconf:
@@ -201,29 +201,29 @@
   loop:
     - 4
     - 18
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Ensure xfce4 panel directory exists for {{ local_user }}"
+- name: "Ensure xfce4 panel directory exists for {{ ansible_user }}"
   file:
     path: "$HOME/.config/xfce4/panel"
     state: directory
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0755
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Verify whiskermenu config for {{ local_user }} is present"
+- name: "Verify whiskermenu config for {{ ansible_user }} is present"
   file:
     path: '$HOME/.config/xfce4/panel/whiskermenu-7.rc'
     state: touch
-    owner: "{{ local_user }}"
-    group: "{{ local_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
     mode: 0664
     modification_time: preserve
     access_time: preserve
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Add settings to whiskermenu config for {{ local_user }}"
+- name: "Add settings to whiskermenu config for {{ ansible_user }}"
   blockinfile:
     path: '$HOME/.config/xfce4/panel/whiskermenu-7.rc'
     block: |
@@ -277,11 +277,11 @@
       show-command-profile=true
       search-actions=5
     state: present
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
 
-- name: "Download Whiskermenu ~/.face for {{ local_user }}"
+- name: "Download Whiskermenu ~/.face for {{ ansible_user }}"
   get_url:
     url: "{{ xfce4_whiskermenu_face }}"
     dest: "$HOME/.face"
     mode: '0664'
-  become_user: "{{ local_user }}"
+  become_user: "{{ ansible_user }}"
