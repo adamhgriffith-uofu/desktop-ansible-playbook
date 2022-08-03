@@ -33,14 +33,14 @@
     state: present
     key: "{{ item }}"
   loop:
-    - "{{ conda_rpm_key }}"
+#    - "{{ conda_rpm_key }}"
     - "{{ googlechrome_rpm_key }}"
     - "{{ googlecloudsdk_rpm_key }}"
     - "{{ googlecloudsdk_yum_key }}"
     - "{{ hashicorp_rpm_key }}"
     - "{{ nvidia_cuda_rhel9_rpm_key }}"
     - "{{ onepassword_rpm_key }}"
-    - "{{ slack_rpm_key }}"
+#    - "{{ slack_rpm_key }}"
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
 
