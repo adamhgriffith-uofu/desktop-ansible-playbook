@@ -6,6 +6,10 @@
       - epel-release
     state: present
 
+- name: Enable EPEL group
+  shell: >-
+    dnf --enablerepo=epel group
+
 #- name: Add Rocky PowerTools repo
 #  shell: >-
 #    dnf config-manager --set-enabled powertools
@@ -60,6 +64,7 @@
       - dnf-plugins-core
       - cuda-drivers.x86_64
       - firewalld
+      - gnome-theme-extras
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
       - nvidia-driver.x86_64
