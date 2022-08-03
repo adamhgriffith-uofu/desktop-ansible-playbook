@@ -34,7 +34,6 @@ kfreestyle2d_git_dest: '/tmp/kfreestyle2d'
 kubectl_version: 1.22.8
 
 #- NVidia-related installation options:
-nvidia_cuda_rhel8_rpm_key: https://developer.download.nvidia.com/compute/cuda/repos/rhel8/x86_64/D42D0685.pub
 nvidia_cuda_rhel9_rpm_key: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/D42D0685.pub
 
 #- 1Password installation options:
