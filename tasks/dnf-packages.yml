@@ -50,7 +50,6 @@
       - "@base-x"
       - "@Container management"
       - "@Development tools"
-      - "@nvidia-driver:latest-dkms"
       - "@Xfce"
     state: present
 
@@ -59,13 +58,15 @@
     name:
       - bash-completion
       - dnf-plugins-core
-      - cuda
+      - cuda-drivers.x86_64
       - firewalld
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
+      - nvidia-driver.x86_64
+      - nvidia-settings.x86_64
       - sshpass
       - xfce4-about.x86_64
-      - xfce4-clipman-plugin.x86_64
+#      - xfce4-clipman-plugin.x86_64
       - xfce4-screenshooter.x86_64
       - xfce4-whiskermenu-plugin.x86_64
     state: present
