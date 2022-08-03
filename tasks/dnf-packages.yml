@@ -23,7 +23,6 @@
     - google-chrome.repo
     - google-cloud-sdk.repo
     - hashicorp.repo
-    - kubernetes.repo
     - nvidia-cuda.repo
     - slack.repo
     - virtualbox.repo
