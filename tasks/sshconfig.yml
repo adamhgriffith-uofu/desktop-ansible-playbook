@@ -1,5 +1,14 @@
 ---
 
+- name: "Ensure ~/.ssh directory exists for {{ ansible_user }}"
+  file:
+    path: "$HOME/.ssh"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0700'
+  become_user: "{{ ansible_user }}"
+
 - name: "Add ssh config for {{ ansible_user }}"
   template:
     src: 'templates/.ssh/config.j2'
