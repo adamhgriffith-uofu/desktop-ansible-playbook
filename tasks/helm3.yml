@@ -71,3 +71,5 @@
 
 # Resources:
 # * https://github.com/gantsign/ansible_role_helm
+
+# TODO: Install helm diff and secrets plugins.
