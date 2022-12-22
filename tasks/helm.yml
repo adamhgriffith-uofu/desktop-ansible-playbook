@@ -1,20 +1,20 @@
 ---
-- name: Check currently installed version of Helm3
+- name: Check currently installed version of Helm
   shell: >-
-    {{ helm_install_dir }}/helm version --client --template {{ "'{{ if .Version }}{{ .Version }}{{ else }}{{ .Client.SemVer }}{{ end }}'" }}
+    helm version --short
   register: helm_current_version
   failed_when: no
   changed_when: no
 
-- name: Remove existing Helm3 installation
+- name: Remove existing Helm installation
   file:
     path: '{{ helm_install_dir }}'
     state: absent
   when:
     - helm_current_version.rc == 0
-    - helm_current_version.stdout != ('v' + helm_version)
+    - helm_version not in helm_current_version.stdout
 
-- name: Ensure Helm3 directories exist
+- name: Ensure Helm directories exist
   file:
     path: "{{ item }}"
     state: directory
@@ -24,26 +24,26 @@
   loop:
     - "{{ helm_install_dir }}"
 
-- name: Download checksum for Helm3
+- name: Download checksum for Helm
   get_url:
     url: "{{ helm_mirror }}/{{ helm_archive_filename }}.sha256"
     dest: /tmp
-  when: helm_current_version.stdout != ('v' + helm_version)
+  when: helm_version not in helm_current_version.stdout
 
-- name: Check checksum for Helm3
+- name: Check checksum for Helm
   slurp:
     src: "/tmp/{{ helm_archive_filename }}.sha256"
   register: helm_sha
-  when: helm_current_version.stdout != ('v' + helm_version)
+  when: helm_version not in helm_current_version.stdout
 
-- name: Download Helm3
+- name: Download Helm
   get_url:
     url: "{{ helm_mirror }}/{{ helm_archive_filename }}"
     checksum: "sha256:'{{ helm_sha.content | b64decode | trim }}'"
     dest: /tmp
-  when: helm_current_version.stdout != ('v' + helm_version)
+  when: helm_version not in helm_current_version.stdout
 
-- name: Extract Helm3 download archive
+- name: Extract Helm download archive
   unarchive:
     src: "/tmp/{{ helm_archive_filename }}"
     dest: "{{ helm_install_dir }}"
@@ -53,9 +53,9 @@
     owner: root
     group: root
     mode: 0755
-  when: helm_current_version.stdout != ('v' + helm_version)
+  when: helm_version not in helm_current_version.stdout
 
-- name: Delete Helm3 temporary files
+- name: Delete Helm temporary files
   file:
     path: "/tmp/{{ helm_archive_filename }}"
     state: absent
@@ -68,6 +68,13 @@
     owner: root
     group: root
     mode: '0755'
+
+- name: Install Helm Plugins
+  kubernetes.core.helm_plugin:
+    plugin_version: "{{ item.version }}"
+    plugin_path: "{{ item.path }}"
+    state: present
+  loop: "{{ helm_plugins | dict2items }}"
 
 # Resources:
 # * https://github.com/gantsign/ansible_role_helm

@@ -22,7 +22,12 @@ ghcli_rpm_key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA7
 helm_archive_filename: 'helm-v{{ helm_version }}-linux-amd64.tar.gz'
 helm_install_dir: '/usr/local/share/helm'
 helm_mirror: 'https://get.helm.sh'
-helm_version: 3.8.1
+helm_plugins:
+  - path: https://github.com/databus23/helm-diff
+    version: 3.6.0
+  - path: https://github.com/jkroepke/helm-secrets
+    version: 4.1.1
+helm_version: 3.10.2
 
 #- JetBrains Toolbox installation options:
 jetbrainstoolbox_archive_filename: 'jetbrains-toolbox-{{ jetbrainstoolbox_version }}.tar.gz'
