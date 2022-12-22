@@ -15,6 +15,9 @@ googlecloudsdk_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
 #- Hashicorp installation options:
 hashicorp_rpm_key: https://rpm.releases.hashicorp.com/gpg
 
+#- GitHub installation options:
+ghcli_rpm_key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
+
 #- Helm3 installation options:
 helm_archive_filename: 'helm-v{{ helm_version }}-linux-amd64.tar.gz'
 helm_install_dir: '/usr/local/share/helm'

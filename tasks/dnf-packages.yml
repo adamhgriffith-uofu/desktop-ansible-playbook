@@ -38,6 +38,7 @@
     key: "{{ item }}"
   loop:
 #    - "{{ conda_rpm_key }}"
+    - "{{ ghcli_rpm_key }}"
     - "{{ googlechrome_rpm_key }}"
     - "{{ googlecloudsdk_rpm_key }}"
     - "{{ googlecloudsdk_yum_key }}"
@@ -61,9 +62,11 @@
   dnf:
     name:
       - bash-completion
+      - dkms
       - dnf-plugins-core
       - cuda-drivers.x86_64
       - firewalld
+      - gh
       - gnome-theme-extras
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
@@ -83,6 +86,7 @@
       - firefox
     state: present
 
+# TODO: Redo GCloud CLI installation using non-root and dnf.
 - name: Install Kubectl & Google Cloud SDK components
   dnf:
     name:

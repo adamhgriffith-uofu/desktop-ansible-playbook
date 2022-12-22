@@ -1,0 +1,7 @@
+# {{ ansible_managed }}
+
+[gh-cli]
+name=packages for the GitHub CLI
+baseurl=https://cli.github.com/packages/rpm
+enabled=1
+gpgkey={{ ghcli_rpm_key }}
