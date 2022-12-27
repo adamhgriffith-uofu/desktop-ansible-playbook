@@ -18,7 +18,7 @@
     mode: '0600'
   become_user: "{{ ansible_user }}"
 
-- name: "Ensure GitHub/GitLab ssh directories exist for {{ ansible_user }}"
+- name: "Ensure GitHub/GitLab/SLATE ssh directories exist for {{ ansible_user }}"
   file:
     path: "$HOME/{{ item }}/ssh"
     state: directory
@@ -28,9 +28,10 @@
   loop:
     - .github
     - .gitlab
+    - .slate
   become_user: "{{ ansible_user }}"
 
-- name: "Verify GitHub/GitLab ssh key files present for {{ ansible_user }}"
+- name: "Verify GitHub/GitLab/SLATE ssh key files present for {{ ansible_user }}"
   file:
     path: "{{ item }}"
     state: touch
@@ -42,12 +43,14 @@
   loop:
     - "{{ ssh_config_github_identityfile_path }}"
     - "{{ ssh_config_gitlab_identityfile_path }}"
+    - "{{ ssh_config_slate_identityfile_path }}"
   become_user: "{{ ansible_user }}"
 
 - name: "Update GitHub/GitLab ssh keys for {{ ansible_user }}"
   shell: |-
     echo "{{ ssh_config_github_identityfile }}" >| {{ ssh_config_github_identityfile_path }}
     echo "{{ ssh_config_gitlab_identityfile }}" >| {{ ssh_config_gitlab_identityfile_path }}
+    echo "{{ ssh_config_slate_identityfile }}" >| {{ ssh_config_slate_identityfile_path }}
   args:
     executable: /bin/bash
   become_user: "{{ ansible_user }}"

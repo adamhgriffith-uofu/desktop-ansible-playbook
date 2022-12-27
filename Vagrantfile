@@ -83,7 +83,9 @@ Vagrant.configure("2") do |config|
       local_user_name: secrets["local_user_name"],
       local_user_gpg_key: secrets["local_user_gpg_key"],
       ssh_config_github_identityfile: secrets["ssh_config_github_identityfile"],
-      ssh_config_gitlab_identityfile: secrets["ssh_config_gitlab_identityfile"]
+      ssh_config_gitlab_identityfile: secrets["ssh_config_gitlab_identityfile"],
+      ssh_config_slate_identityfile: secrets["ssh_config_slate_identityfile"],
+      ssh_config_slate_user: secrets["ssh_config_slate_user"]
     }
     ansible.host_key_checking = false
     ansible.playbook = "./playbook.yml"
