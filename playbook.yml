@@ -45,6 +45,9 @@
     - name: Zoom
       include_tasks: "tasks/zoom.yml"
 
+    - name: Assorted scripts
+      include_tasks: "tasks/scripts.yml"
+
     - name: GlobalProtect VPN Client
       debug:
         msg: |

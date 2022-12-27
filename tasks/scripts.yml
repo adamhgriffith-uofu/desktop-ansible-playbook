@@ -1,0 +1,19 @@
+---
+
+- name: "Ensure ~/Documents/scripts directory exists for {{ ansible_user }}"
+  file:
+    path: "$HOME/Documents/scripts"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0700'
+  become_user: "{{ ansible_user }}"
+
+- name: "Add google-chrome-socks5 for {{ ansible_user }}"
+  template:
+    src: 'templates/scripts/google-chrome-socks5.sh.j2'
+    dest: "$HOME/Documents/scripts/google-chrome-socks5.sh"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0775'
+  become_user: "{{ ansible_user }}"

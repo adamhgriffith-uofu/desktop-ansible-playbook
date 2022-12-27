@@ -1,0 +1,24 @@
+#!/bin/bash
+# {{ ansible_managed }}
+
+# Enable strict mode:
+set -euo pipefail
+
+# Variables
+PORT=8001
+
+# Messages:
+echo """
+Important::
+
+This will only work correctly if there is no existing Google Chrome
+session and you have already executed the following in a separate
+terminal:
+
+   ssh -D ${PORT} <args>
+
+"""
+
+# Start the proxy:
+echo "Starting a Socks5 proxy in Google Chrome on port ${PORT}......"
+google-chrome-stable --proxy-server="socks5://localhost:${PORT}" --profile-directory="Profile 1"
