@@ -1,0 +1,70 @@
+---
+- name: Check currently installed version of vals
+  shell: >-
+    vals version
+  register: variantdev_vals_current_version
+  failed_when: no
+  changed_when: no
+
+- name: Remove existing vals installation
+  file:
+    path: '{{ variantdev_vals_install_dir }}'
+    state: absent
+  when:
+    - variantdev_vals_current_version.rc == 0
+    - variantdev_vals_version not in variantdev_vals_current_version.stdout
+
+- name: Ensure vals directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - "{{ variantdev_vals_install_dir }}"
+
+- name: Download checksum for vals
+  get_url:
+    url: "{{ variantdev_vals_mirror }}/vals_{{ variantdev_vals_version }}_checksums.txt"
+    dest: /tmp
+  when: variantdev_vals_version not in variantdev_vals_current_version.stdout
+
+- name: Check checksum for vals
+  slurp:
+    src: "/tmp/vals_{{ variantdev_vals_version }}_checksums.txt"
+  register: variantdev_vals_sha
+  when: variantdev_vals_version not in variantdev_vals_current_version.stdout
+
+- name: Download vals
+  get_url:
+    url: "{{ variantdev_vals_mirror }}/{{ variantdev_vals_archive_filename }}"
+    checksum: "sha256:'{{ variantdev_vals_sha.content | b64decode | trim }}'"
+    dest: /tmp
+  when: variantdev_vals_version not in variantdev_vals_current_version.stdout
+
+- name: Extract vals download archive
+  unarchive:
+    src: "/tmp/{{ variantdev_vals_archive_filename }}"
+    dest: "{{ variantdev_vals_install_dir }}"
+    extra_opts:
+      - '--strip-components=1'
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: variantdev_vals_version not in variantdev_vals_current_version.stdout
+
+- name: Delete vals temporary files
+  file:
+    path: "/tmp/{{ variantdev_vals_archive_filename }}"
+    state: absent
+
+- name: Create vals symbolic link
+  file:
+    src: "{{ variantdev_vals_install_dir }}/vals"
+    dest: '/usr/local/bin/vals'
+    state: link
+    owner: root
+    group: root
+    mode: '0755'

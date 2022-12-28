@@ -18,7 +18,7 @@ hashicorp_rpm_key: https://rpm.releases.hashicorp.com/gpg
 #- GitHub installation options:
 ghcli_rpm_key: https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x23F3D4EA75716059
 
-#- Helm3 installation options:
+#- Helm installation options:
 helm_archive_filename: 'helm-v{{ helm_version }}-linux-amd64.tar.gz'
 helm_install_dir: '/usr/local/share/helm'
 helm_mirror: 'https://get.helm.sh'
@@ -54,6 +54,12 @@ slack_rpm_key: https://packagecloud.io/gpg.key
 ssh_config_github_identityfile_path: "~/.github/ssh/id_ed25519"
 ssh_config_gitlab_identityfile_path: "~/.gitlab/ssh/id_ed25519"
 ssh_config_slate_identityfile_path: "~/.slate/ssh/id_ecdsa"
+
+#- variantdev/vals installation options:
+variantdev_vals_archive_filename: '{{ variantdev_vals_version }}-linux_amd64.tar.gz'
+variantdev_vals_install_dir: '/usr/local/share/vals'
+variantdev_vals_mirror: "https://github.com/variantdev/vals/releases/download/v{{ variantdev_vals_version }}"
+variantdev_vals_version: 0.21.0
 
 #- VirtualBox installation options:
 virtualbox_rpm_key: https://www.virtualbox.org/download/oracle_vbox.asc
