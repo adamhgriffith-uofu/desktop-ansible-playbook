@@ -83,6 +83,7 @@
   dnf:
     name:
       - gnome-theme-extras
+      - papirus-icon-theme
       - xfce4-about.x86_64
 #      - xfce4-clipman-plugin.x86_64
       - xfce4-screenshooter.x86_64

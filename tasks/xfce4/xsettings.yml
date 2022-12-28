@@ -5,7 +5,7 @@
     channel: 'xsettings'
     property: "/Net/IconThemeName"
     value_type: string
-    value: "Adwaita"
+    value: "Pairus-Dark"
   become_user: "{{ ansible_user }}"
 
 - name: "Set up 'ThemeName' xsettings"
