@@ -10,10 +10,10 @@ googlechrome_rpm_key: https://dl.google.com/linux/linux_signing_key.pub
 
 #- Google Cloud SDK installation options:
 googlecloudsdk_components:
- - beta
- - gke-gcloud-auth-plugin
- - minikube
- - terraform-tools
+  - beta
+  - gke-gcloud-auth-plugin
+  - minikube
+  - terraform-tools
 goglecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 googlecloudsdk_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
 
@@ -85,5 +85,4 @@ xfce4_whiskermenu_favorites: "xfce4-terminal-emulator.desktop,firefox.desktop,go
 xfce4_whiskermenu_title: "Horkle Snorkle"
 
 #- Zoom installation options:
-zoom_rpm: https://zoom.us/client/latest/zoom_x86_64.rpm
-zoom_rpm_key: https://zoom.us/linux/download/pubkey
+zoom_rpm_key: https://zoom.us/linux/download/pubkey?version=5-12-6

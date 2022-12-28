@@ -70,6 +70,7 @@
 #    - "{{ slack_rpm_key }}"
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
+    - "{{ zoom_prpm_key }}"
 
 - name: Install/update display-related packages
   dnf:
@@ -85,7 +86,6 @@
       - gnome-theme-extras
       - papirus-icon-theme
       - xfce4-about.x86_64
-#      - xfce4-clipman-plugin.x86_64
       - xfce4-screenshooter.x86_64
       - xfce4-whiskermenu-plugin.x86_64
     state: latest
@@ -121,6 +121,12 @@
   dnf:
     name: https://release.axocdn.com/linux/gitkraken-amd64.rpm
     disable_gpg_check: yes
+    state: present
+
+- name: Install/update Zoom
+  dnf:
+    name: https://zoom.us/client/latest/zoom_x86_64.rpm
+#    disable_gpg_check: yes
     state: present
 
 - name: Install/update other packages
