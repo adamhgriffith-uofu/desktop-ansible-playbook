@@ -33,6 +33,9 @@
     - name: variantdev/vals
       include_tasks: "tasks/variantdev-vals.yml"
 
+    - name: mozilla/sops
+      include_tasks: "tasks/mozilla-sops.yml"
+
     - name: kfreestyle2d
       include_tasks: "tasks/kfreestyle2d.yml"
 

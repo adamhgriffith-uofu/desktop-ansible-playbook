@@ -1,0 +1,43 @@
+---
+- name: Check currently installed version of sops
+  shell: >-
+    sops --version
+  register: mozilla_sops_current_version
+  failed_when: no
+  changed_when: no
+
+- name: Remove existing sops installation
+  file:
+    path: '{{ mozilla_sops_install_dir }}'
+    state: absent
+  when:
+    - mozilla_sops_current_version.rc == 0
+    - mozilla_sops_version not in mozilla_sops_current_version.stdout
+
+- name: Ensure sops directories exist
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  loop:
+    - "{{ mozilla_sops_install_dir }}"
+
+- name: Download sops
+  get_url:
+    url: "{{ mozilla_sops_mirror }}/{{ mozilla_sops_filename }}"
+    dest: "{{ mozilla_sops_install_dir }}"
+    owner: root
+    group: root
+    mode: 0755
+  when: mozilla_sops_version not in mozilla_sops_current_version.stdout
+
+- name: Create sops symbolic link
+  file:
+    src: "{{ mozilla_sops_install_dir }}/sops"
+    dest: '/usr/local/bin/sops'
+    state: link
+    owner: root
+    group: root
+    mode: '0755'

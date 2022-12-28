@@ -41,6 +41,12 @@ kfreestyle2d_git_dest: '/tmp/kfreestyle2d'
 #- Kubectl installation options:
 kubectl_version: 1.22.8
 
+#- mozilla/sops installation options:
+mozilla_sops_filename: 'sops-v{{ mozilla_sops_version }}.linux.amd64'
+mozilla_sops_install_dir: '/usr/local/share/sops'
+mozilla_sops_mirror: "https://github.com/variantdev/vals/releases/download/v{{ mozilla_sops_version }}"
+mozilla_sops_version: 3.7.3
+
 #- NVidia-related installation options:
 nvidia_cuda_rhel9_rpm_key: https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/D42D0685.pub
 
@@ -56,7 +62,7 @@ ssh_config_gitlab_identityfile_path: "~/.gitlab/ssh/id_ed25519"
 ssh_config_slate_identityfile_path: "~/.slate/ssh/id_ecdsa"
 
 #- variantdev/vals installation options:
-variantdev_vals_archive_filename: '{{ variantdev_vals_version }}-linux_amd64.tar.gz'
+variantdev_vals_archive_filename: 'vals_{{ variantdev_vals_version }}-linux_amd64.tar.gz'
 variantdev_vals_install_dir: '/usr/local/share/vals'
 variantdev_vals_mirror: "https://github.com/variantdev/vals/releases/download/v{{ variantdev_vals_version }}"
 variantdev_vals_version: 0.21.0
