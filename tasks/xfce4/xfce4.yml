@@ -12,8 +12,8 @@
 - name: Xfce4 Power Manager
   include_tasks: "power-manager.yml"
 
-- name: Xfce4 Panel
-  include_tasks: "panel.yml"
+#- name: Xfce4 Panel
+#  include_tasks: "panel.yml"
 
 - name: Xfce4 Keyboard Shortcuts
   include_tasks: "keyboard-shortcuts.yml"
