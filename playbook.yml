@@ -48,16 +48,12 @@
     - name: JetBrains Toolbox
       include_tasks: "tasks/jetbrains-toolbox.yml"
 
-    - name: Zoom
-      include_tasks: "tasks/zoom.yml"
+    - name: Zoom Backgrounds
+      include_tasks: "tasks/zoom-backgrounds.yml"
 
     - name: Assorted scripts
       include_tasks: "tasks/scripts.yml"
 
-    - name: GlobalProtect VPN Client
-      debug:
-        msg: |
-          Visit https://software-catalog.app.utah.edu to order and download the Employee-licensed GlobalProtect VPN Client.
 #
 #  handlers:
 #    - name: Clean DNF Caches
