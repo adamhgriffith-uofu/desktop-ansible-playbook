@@ -18,7 +18,6 @@
     modification_time: preserve
     access_time: preserve
 
-
 - name: "Add auto_activate_base: false to .condarc system-wide"
   lineinfile:
     path: '/opt/conda/.condarc'
