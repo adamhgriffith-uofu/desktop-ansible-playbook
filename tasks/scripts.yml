@@ -6,7 +6,7 @@
     state: directory
     owner: "{{ ansible_user }}"
     group: "{{ ansible_user }}"
-    mode: '0700'
+    mode: '0755'
   become_user: "{{ ansible_user }}"
 
 - name: "Add google-chrome-socks5 for {{ ansible_user }}"

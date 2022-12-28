@@ -3,7 +3,7 @@
 
 - name: Check currently installed version of JetBrains Toolbox
   shell: >-
-    {{ jetbrainstoolbox_install_dir }}/jetbrains-toolbox --version | sed 's/^Toolbox \(.*\)$/\1/'
+    jetbrains-toolbox --version | sed 's/^Toolbox \(.*\)$/\1/'
   register: jetbrainstoolbox_current_version
   failed_when: no
   changed_when: no

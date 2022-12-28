@@ -5,12 +5,3 @@
     src: '/usr/lib/systemd/system/graphical.target'
     dest: '/etc/systemd/system/default.target'
     state: link
-
-
-- name: Add system-wide xorg.conf
-  template:
-    src: 'templates/xorg.conf.j2'
-    dest: '/etc/X11/xorg.conf'
-    owner: root
-    group: root
-    mode: '0644'
