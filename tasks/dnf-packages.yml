@@ -10,9 +10,14 @@
   shell: >-
     dnf --enablerepo=epel group
 
-#- name: Add Rocky PowerTools repo
-#  shell: >-
-#    dnf config-manager --set-enabled powertools
+- name: Install/update system-related packages
+  dnf:
+    name:
+      - bash-completion
+      - dnf-plugins-core
+      - firewalld
+      - sshpass
+    state: latest
 
 - name: Add other package repo files
   template:
@@ -49,70 +54,76 @@
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
 
-- name: Install DNF modules
+- name: Install/update DNF modules
   dnf:
     name:
       - "@base-x"
       - "@Container management"
       - "@Development tools"
       - "@Xfce"
-    state: present
+    state: latest
 
-- name: Install System-related packages
+- name: Install/update kernel-related packages
   dnf:
     name:
-      - bash-completion
       - dkms
-      - dnf-plugins-core
-      - cuda-drivers.x86_64
-      - firewalld
-      - gh
-      - gnome-theme-extras
       - kernel-devel-{{ ansible_kernel }}
       - kernel-headers-{{ ansible_kernel }}
+    state: latest
+
+- name: Install/update display-related packages
+  dnf:
+    name:
+      - cuda-drivers.x86_64
       - nvidia-driver.x86_64
       - nvidia-settings.x86_64
-      - sshpass
+    state: latest
+
+- name: Install/update gui-related packages
+  dnf:
+    name:
+      - gnome-theme-extras
       - xfce4-about.x86_64
 #      - xfce4-clipman-plugin.x86_64
       - xfce4-screenshooter.x86_64
       - xfce4-whiskermenu-plugin.x86_64
-    state: present
+    state: latest
 
-- name: Install Web Browsers
-  dnf:
-    name:
-      - google-chrome-stable
-      - firefox
-    state: present
-
-# TODO: Redo GCloud CLI installation using non-root and dnf.
-- name: Install Kubectl & Google Cloud SDK components
+- name: Install/update kubectl & Google Cloud SDK components
   dnf:
     name:
       - google-cloud-sdk
       - google-cloud-sdk-gke-gcloud-auth-plugin
       - google-cloud-sdk-minikube
       - kubectl-{{ kubectl_version }}
-    state: present
+    state: latest
 
 - name: Install extra containerization tools
   dnf:
     name:
+      - podman
       - podman-compose
+    state: latest
+
+- name: Install Virtualization tools
+  dnf:
+    name:
+      - VirtualBox-{{ virtualbox_version }}
     state: present
 
-- name: Install other apps
+- name: Install/update other apps
   dnf:
     name:
       - 1password
       - code
       - conda
+      - firefox
+      - gh
       - git
+      - google-chrome-stable
       - keepassxc
       - slack
       - terraform
       - vagrant
       - wireshark
-      - VirtualBox-{{ virtualbox_version }}
-    state: present
+    state: latest
