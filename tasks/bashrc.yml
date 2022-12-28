@@ -12,27 +12,34 @@
       export PS1="\u@\h \[\033[32m\]\w\[\033[1;31m\]\$(parse_git_branch)\[\033[00m\]\n$ "
     state: present
     validate: 'bash -n %s'
+  become_user: "{{ ansible_user }}"
 
 - name: Add USE_GKE_GCLOUD_AUTH_PLUGIN to Bash
-  lineinfile:
+  blockinfile:
     path: '$HOME/.bashrc'
-    line: 'USE_GKE_GCLOUD_AUTH_PLUGIN=True'
+    block: |
+      # gcloud options
+      USE_GKE_GCLOUD_AUTH_PLUGIN=True
     state: present
     validate: 'bash -n %s'
   become_user: "{{ ansible_user }}"
 
 - name: Install Kubectl Bash autocomplete
-  lineinfile:
+  blockinfile:
     path: '$HOME/.bashrc'
-    line: 'source <(kubectl completion bash)'
+    block: |
+      # kubectl bash completion
+      source <(kubectl completion bash)
     state: present
     validate: 'bash -n %s'
   become_user: "{{ ansible_user }}"
 
 - name: Install Terraform Bash autocomplete
-  lineinfile:
+  blockinfile:
     path: '$HOME/.bashrc'
-    line: 'complete -C /usr/bin/terraform terraform'
+    block: |
+      # terraform bash completion
+      complete -C /usr/bin/terraform terraform
     state: present
     validate: 'bash -n %s'
   become_user: "{{ ansible_user }}"
