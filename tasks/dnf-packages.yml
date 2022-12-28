@@ -19,6 +19,23 @@
       - sshpass
     state: latest
 
+- name: Install/update system-related modules
+  dnf:
+    name:
+      - "@base-x"
+      - "@Container management"
+      - "@Development tools"
+      - "@Xfce"
+    state: latest
+
+- name: Install/update kernel-related packages
+  dnf:
+    name:
+      - dkms
+      - kernel-devel-{{ ansible_kernel }}
+      - kernel-headers-{{ ansible_kernel }}
+    state: latest
+
 - name: Add other package repo files
   template:
     src: "templates/yum.repos.d/{{ item }}.j2"
@@ -54,23 +71,6 @@
     - "{{ virtualbox_rpm_key }}"
     - "{{ vscode_rpm_key }}"
 
-- name: Install/update DNF modules
-  dnf:
-    name:
-      - "@base-x"
-      - "@Container management"
-      - "@Development tools"
-      - "@Xfce"
-    state: latest
-
-- name: Install/update kernel-related packages
-  dnf:
-    name:
-      - dkms
-      - kernel-devel-{{ ansible_kernel }}
-      - kernel-headers-{{ ansible_kernel }}
-    state: latest
-
 - name: Install/update display-related packages
   dnf:
     name:
@@ -89,29 +89,34 @@
       - xfce4-whiskermenu-plugin.x86_64
     state: latest
 
-- name: Install/update kubectl & Google Cloud SDK components
+- name: Install/update kubectl & Google Cloud SDK
   dnf:
     name:
       - google-cloud-sdk
-      - google-cloud-sdk-gke-gcloud-auth-plugin
-      - google-cloud-sdk-minikube
       - kubectl-{{ kubectl_version }}
     state: latest
 
-- name: Install extra containerization tools
+- name: Install/update Google Cloud SDK components
+  dnf:
+    name:
+      - google-cloud-sdk-{{ item }}
+    state: latest
+  loop: "{{ googlecloudsdk_components | dict2items }}"
+
+- name: Install extra containerization packages
   dnf:
     name:
       - podman
       - podman-compose
     state: latest
 
-- name: Install Virtualization tools
+- name: Install VirtualBox
   dnf:
     name:
       - VirtualBox-{{ virtualbox_version }}
     state: present
 
-- name: Install/update other apps
+- name: Install/update other packages
   dnf:
     name:
       - 1password

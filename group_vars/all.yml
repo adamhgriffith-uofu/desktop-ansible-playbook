@@ -9,7 +9,12 @@ gitkraken_rpm: https://release.axocdn.com/linux/gitkraken-amd64.rpm
 googlechrome_rpm_key: https://dl.google.com/linux/linux_signing_key.pub
 
 #- Google Cloud SDK installation options:
-googlecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+googlecloudsdk_components:
+ - beta
+ - gke-gcloud-auth-plugin
+ - minikube
+ - terraform-tools
+goglecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 googlecloudsdk_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
 
 #- Hashicorp installation options:
