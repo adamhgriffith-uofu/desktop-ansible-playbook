@@ -10,12 +10,25 @@
   shell: >-
     dnf --enablerepo=epel group
 
+- name: Install core DNF plugins
+  dnf:
+    name:
+      - dnf-plugins-core
+    state: latest
+
 - name: Install/update system-related packages
   dnf:
     name:
       - bash-completion
-      - dnf-plugins-core
+      - bzip2
+      - dkms
+      - elfutils-libelf-devel
       - firewalld
+      - gcc
+      - kernel-devel
+      - kernel-headers
+      - make
+      - perl
       - sshpass
     state: latest
 
@@ -26,14 +39,6 @@
       - "@Container management"
       - "@Development tools"
       - "@Xfce"
-    state: latest
-
-- name: Install/update kernel-related packages
-  dnf:
-    name:
-      - dkms
-      - kernel-devel-{{ ansible_kernel }}
-      - kernel-headers-{{ ansible_kernel }}
     state: latest
 
 - name: Add other package repo files
