@@ -14,7 +14,7 @@ googlecloudsdk_components:
   - gke-gcloud-auth-plugin
   - minikube
   - terraform-tools
-goglecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+googlecloudsdk_rpm_key: https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
 googlecloudsdk_yum_key: https://packages.cloud.google.com/yum/doc/yum-key.gpg
 
 #- Hashicorp installation options:
